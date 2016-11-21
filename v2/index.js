@@ -18,7 +18,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "PeerConnectionIdp",
   "resource://gre/modules/media/PeerConnectionIdp.jsm");
 
 
-storage.identities = {}
+//storage.identities = {}
 //{
 //    'bob@idp.com@energyq.idp.rethink.orange-labs.fr': {
 //        name: 'Bob K.',
