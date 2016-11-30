@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1= title
+
+  h3 Authorized Clients
+  each authed in authedClients
+    p
+        a(href="/client/"+authed.id)= authed.name
+
+  h3 Owned Clients
+  each owned in ownedClients
+    p
+        a(href="/client/"+owned.id)= owned.name
+
+  a(href="/client/register") Register new client

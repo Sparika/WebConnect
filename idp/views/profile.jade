@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h3 Profile
+
+  p
+    a#register-a(href='') Register in Firefox
+  p
+    a(href='/client') See my clients
+
+  script(src="/javascripts/wid_api.js")
+  script.
+      el = document.getElementById('register-a');
+        function register() {
+            wid_register('#{params.iss}', '#{params.sub}', '#{params.type}', '#{params.name}')
+      	}
+      document.getElementById("register-a").onclick = register;

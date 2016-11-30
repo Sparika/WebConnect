@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1= title
+  form#formAddClient(name="addclient", method="post",action="/client/register")
+    div.input
+        span.label Client Name:
+        input#inputClientName(type="text", placeholder="Client Name", name="name")
+    div.input
+        span.label Redirect URIs:
+        input#inputRedirectUri(type="text", placeholder="Redirect URIs", name="redirect_uris")
+    div.input
+        span.label Signature Algorithm:
+        select#inputSignatureType(name="required_sig")
+            option(value="HS256") HS256
+            option(value="RS256") RS256
+    div.action
+        button#btnSubmit(type="submit") Register

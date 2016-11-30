@@ -1,0 +1,27 @@
+{
+  "name": "openid-connect-server",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "start": "node openid-connect-server.js"
+  },
+  "dependencies": {
+    "base64url": "^1.0.5",
+    "body-parser": "^1.14.1",
+    "connect-redis": "^2.5.1",
+    "cookie-parser": "^1.4.0",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "extend": "^3.0.0",
+    "fs": "0.0.2",
+    "https": "^1.0.0",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^5.7.0",
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1",
+    "openid-connect": "https://github.com/Sparika/OpenIDConnect.git",
+    "pem-jwk": "^1.5.1",
+    "ursa": "^0.9.1"
+  }
+}

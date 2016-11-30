@@ -1,0 +1,21 @@
+div(class="navbar navbar-inverse navbar-fixed-top")
+  div(class="navbar-inner")
+    div(class="container")
+      a(class="brand", href="/") OpenID Connect NODE.js Server
+      div(class="nav-collapse collapse")
+        if me
+          ul(class="nav pull-right")
+            li(class="dropdown")
+              a(href="#", class="dropdown-toggle", data-toggle="dropdown")
+                | #{me.username || me.email}
+                b(class="caret")
+              ul(class="dropdown-menu")
+                li
+                  a(href="/profile") Profile
+                li(class="divider")
+                li
+                  a(href="/logout") Sign out
+        else
+          form#login.navbar-form.pull-right
+            input#token(type="hidden", name="_csrf", value=token)
+            button.btn(type="submit") Login
