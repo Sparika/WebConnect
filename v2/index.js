@@ -17,8 +17,9 @@ XPCOMUtils.defineLazyModuleGetter(this, 'IdpSandbox',
 XPCOMUtils.defineLazyModuleGetter(this, "PeerConnectionIdp",
   "resource://gre/modules/media/PeerConnectionIdp.jsm");
 
-
-//storage.identities = {}
+// Init only if does not exists already
+if(!storage.identities)
+    storage.identities = {}
 //{
 //    'bob@idp.com@energyq.idp.rethink.orange-labs.fr': {
 //        name: 'Bob K.',
@@ -134,7 +135,10 @@ function sendResponse(response){
         var payload = JSON.parse(base64.decode(JSON.parse(base64.decode(response.token)).assertion.split('.')[1]))
         console.error(response.selected.proxy)
         response.selected.sub = payload.sub
-        response.selected.iss = payload.iss.split(/https?:\/\//)[1]
+        if(payload.iss.startsWith('https://')||payload.iss.startsWith('http://'))
+            response.selected.iss = payload.iss.split(/https?:\/\//)[1]
+        else
+            response.selected.iss = payload.iss
         widp_register(response.selected)
         var msg = {identities: storage.identities, origin: currentRequest.origin}
         wid_selector.port.emit("init", msg);
@@ -168,6 +172,7 @@ function widp_register(params){
                     id: params.sub+"@"+params.iss,
                     proxy: {type: params.proxy.type}
                    }
+    console.error(params)
     storage.identities[identity.id] = identity
 }
 

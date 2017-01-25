@@ -78,7 +78,7 @@ function addIdentityCard(identity){
     profileElt.appendChild(document.createElement("br"))
     span = document.createElement("span")
     span.className = "profileDetails";
-    span.innerHTML = "webrtc-proxy"//identity.proxy.type
+    span.innerHTML = identity.proxy.type
     profileElt.appendChild(span)
     profileElt.appendChild(document.createElement("br"))
     span = document.createElement("span")
