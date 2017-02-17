@@ -1,7 +1,7 @@
 {
   "title": "Web browser IDentity management",
   "name": "wid-ext",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Identity management in browser",
   "main": "index.js",
   "author": "Kevin Corre",
@@ -9,7 +9,7 @@
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
   },
-  "license": "MIT",
+  "license" : "SEE LICENSE IN LICENSE.md",
   "keywords": [
     "jetpack"
   ]

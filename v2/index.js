@@ -18,8 +18,10 @@ XPCOMUtils.defineLazyModuleGetter(this, "PeerConnectionIdp",
   "resource://gre/modules/media/PeerConnectionIdp.jsm");
 
 // Init only if does not exists already
-if(!storage.identities)
+if(!storage.identities){
     storage.identities = {}
+    storage.guid = null
+}
 //{
 //    'bob@idp.com@energyq.idp.rethink.orange-labs.fr': {
 //        name: 'Bob K.',
@@ -41,8 +43,7 @@ if(!storage.identities)
 var wid_selector = panel.Panel({
   width: 300,
   height: 300,
-  contentURL: data.url("wid_ui/wid_selector.html"),
-  //contentScriptFile: data.url("wid_ui/wid_selector.js")
+  contentURL: data.url("app/index.html"),
 });
 
 var wid_button = require("sdk/ui/button/toggle").ToggleButton({
@@ -66,8 +67,7 @@ function clk_idSelector(state) {
 // send our own "show" event to the panel's script, so the
 // script can prepare the panel for display.
 wid_selector.on("show", function() {
-  var msg = {identities: storage.identities, origin: currentRequest.origin}
-  wid_selector.port.emit("init", msg);
+  displaySelector()
 });
 wid_selector.on("hide", function() {
   wid_button.state('window', {checked: false});
@@ -99,35 +99,36 @@ wid_selector.port.on("hash", function(msg) {
   }
   widp_getIdentityAssertion(response)
 });
+
+function displaySelector(){
+    var msg = {identities: storage.identities, origin: currentRequest.origin, guid: storage.guid}
+    wid_selector.port.emit("init", msg);
+}
 /************************************************************
 /                PAGE CALL TO API
 /***********************************************************/
 var currentRequest = {}
-var pageMod = mod.PageMod({
-  include: "*",
-  contentScriptFile: self.data.url("wid_listener.js"),
-  contentScriptWhen: "ready",
-  onAttach: function(worker){
-      worker.port.on("widp_register",function(params){
-          widp_register(params)
-      });
-      worker.port.on("wid_request",function(request){
-          currentRequest = request
-          currentRequest.worker = worker
-          doRequest()
-      });
-  }
-})
-
-function doRequest(){
-    //Here we do stuff
-    wid_selector.show({position: wid_button});
-    // Ask user to select identity
-
-    // Verify authorization (?)
-
-    // Ask user to authorize
-}
+//var pageMod = mod.PageMod({
+//  include: "*",
+//  contentScriptFile: self.data.url("scripts/wid_listener.js"),
+//  contentScriptWhen: "ready",
+//  onAttach: function(worker){
+//      worker.port.on("wid_register",function(request){
+//          wid_register(request)
+//          worker.port.emit('wid_response', 'success')
+//      });
+//      worker.port.on("wid_request",function(request){
+//          currentRequest = request
+//          currentRequest.worker = worker
+//          wid_selector.show({position: wid_button});
+//      });
+//      worker.port.on("wid_guid", function(request){
+//          wid_registerGUID(request)
+//          console.error(request)
+//          worker.port.emit('wid_response', 'success')
+//      });
+//  }
+//})
 
 function sendResponse(response){
     if(response.origin == "#add" && !response.error){
@@ -140,14 +141,9 @@ function sendResponse(response){
         else
             response.selected.iss = payload.iss
         widp_register(response.selected)
-        var msg = {identities: storage.identities, origin: currentRequest.origin}
-        wid_selector.port.emit("init", msg);
+        displaySelector()
     } else if (response.origin == "#add" && response.error){
         console.error(response.error)
-
-
-
-
     } else {
         // Reply to origin with token
         var worker = response.worker
@@ -162,20 +158,19 @@ function sendResponse(response){
 /                IDP PROXY MANAGEMENT API
 /              USES PAGE CALL TO API WORKER
 /***********************************************************/
-function widp_register(params){
-    //Init peerConnection with domain and type
-    //var _idp = new IdpSandbox()
-
+function wid_register(request){
     //Register new identity
-    var identity = {name: params.name||params.sub,
-                    domain: params.iss,
-                    id: params.sub+"@"+params.iss,
-                    proxy: {type: params.proxy.type}
+    var identity = {name: request.name||request.sub,
+                    domain: request.iss,
+                    id: request.sub+"@"+request.iss,
+                    proxy: {type: request.proxy.type}
                    }
-    console.error(params)
     storage.identities[identity.id] = identity
 }
-
+function wid_registerGUID(request){
+    //TODO Test if already set
+    storage.guid = request.guid
+}
 
 function widp_getIdentityAssertion(response){
     //For now we do it with WebRTC
@@ -204,19 +199,19 @@ function widp_getIdentityAssertion(response){
     }}));
 }
 
-function promiseLogin(loginUrl, hiddenFrame){
-    var login_popup = panel.Panel({contentURL: loginUrl})
-    //TODO Promise to login
-    login_popup.show()
-    //var login_popup = hiddenFrame.element.contentWindow.open(loginUrl)
-
-    return new Promise(function(resolve, reject){
-        login_popup.on('*', function(event){
-            if(event == 'hide'){
-                resolve(event)
-            }
-            //else
-            //    reject(event)
-        })
-    })
-}
+//function promiseLogin(loginUrl, hiddenFrame){
+//    var login_popup = panel.Panel({contentURL: loginUrl})
+//    //TODO Promise to login
+//    login_popup.show()
+//    //var login_popup = hiddenFrame.element.contentWindow.open(loginUrl)
+//
+//    return new Promise(function(resolve, reject){
+//        login_popup.on('*', function(event){
+//            if(event == 'hide'){
+//                resolve(event)
+//            }
+//            //else
+//            //    reject(event)
+//        })
+//    })
+//}

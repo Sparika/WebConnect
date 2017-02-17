@@ -41,6 +41,9 @@ addon.port.on("init", function onShow(msg) {
     document.getElementById("headerTitle").innerHTML = displayMsg
     document.getElementById("headerDetails").innerHTML = displayHelp
   }
+
+  document.getElementById("guidP").innerHTML = msg.guid
+
   //Clear
   var sarea = document.getElementById("select-area")
   while (sarea.lastChild) {
