@@ -44,6 +44,7 @@ var wid_selector = panel.Panel({
   width: 300,
   height: 300,
   contentURL: data.url("app/index.html"),
+  contentURL: data.url("wid_ui/wid_selector.html"),
 });
 
 var wid_button = require("sdk/ui/button/toggle").ToggleButton({
