@@ -1,0 +1,33 @@
+<div class="container" *ngIf="identity">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h2>
+      <img [src]="identity.picture" width="64" height="64">
+      {{identity.name}}</h2>
+    <br>
+    <div class="row">
+      <label class="col">name: </label>
+      <input class="col-2"[(ngModel)]="identity.name" placeholder="name" />
+    </div>
+    <div class="row">
+      <label class="col">sub: </label>
+      <span class="col-2">{{identity.sub}}</span>
+    </div>
+    <div class="row">
+      <label class="col">picture: </label>
+      <span class="col-2">{{identity.picture}}</span>
+    </div>
+    <div class="row">
+      <label class="col">iss: </label>
+      <span class="col-2">{{identity.iss}}</span>
+    </div>
+    <div class="row">
+      <label class="col">proxy: </label>
+      <span class="col-2">{{identity.proxy}}</span>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <button (click)="goBack()">Back</button>
+</div>
