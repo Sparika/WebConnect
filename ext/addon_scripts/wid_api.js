@@ -46,6 +46,7 @@ window.addEventListener("message", function(message){
 function wid_connect (request){
     return browser.runtime.sendMessage({type:"wid_request",request:request})
     .then(response => {
+        console.log(response)
         if(response.error){
             return {type:"wid_error", 'response':response.error}
         } else {

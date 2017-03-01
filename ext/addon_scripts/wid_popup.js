@@ -4,17 +4,14 @@ function route(route){
     var path = route.split('/')
     switch(path[0]){
     case "#dashboard":
-        console.log('dashboard')
         var html    = Handlebars.templates.dashboard({identities: IDENTITIES});
         document.getElementById("app").innerHTML = html
     break;
     case "#select":
-        console.log('select')
         var html    = Handlebars.templates.select({identities: IDENTITIES});
         document.getElementById("app").innerHTML = html
     break;
     case "#selected":
-        console.log('selected '+route[1])
         browser.runtime.sendMessage({type:"popup_selected", identity: IDENTITIES[path[1]]})
     break;
     case "#search":

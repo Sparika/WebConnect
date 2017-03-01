@@ -103,18 +103,16 @@ function wid_request(request){
             assertionRequest.reject = reject
             assertionRequest.resolved = false
             assertionRequest.count = 0
-            document.getElementById('sandbox').contentWindow.postMessage({iss:identity.iss, proxy:identity.proxy}, '*')
+            document.getElementById('sandbox').contentWindow.postMessage(identity, '*')
         })
     })
     .then(assertion => {
-        console.log('ASSERTION RESOLVED')
         assertionRequest.resolved = true;
         return assertion
     })
 }
 
 function popup_rcv(message, sender, sendResponse){
-    console.log(sender)
     switch (message.type) {
         case 'popup_ready':
             sendResponse({identities:storage.identities})
