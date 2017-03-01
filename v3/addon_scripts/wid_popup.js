@@ -1,49 +1,45 @@
-const IDENTITIES = [
-  {
-    id: 1,
-    iss: 'energyq.idp.rethink.orange-labs.fr',
-    sub: 'bob@idp.com',
-    picture: 'http://placehold.it/350x350',
-    name: 'Mr. Bob',
-    proxy: 'rethink-oidc'
-  },
-  {
-    id: 2,
-    iss: 'oidc.rethink.orange-labs.fr',
-    sub: 'frank@dt.de',
-    picture: 'http://placehold.it/250x250',
-    name: 'Frank',
-    proxy: 'rethink-oidc'
-  }
-];
+var IDENTITIES = []
 
-function route(route, id){
-    console.log("routing")
-    switch(route){
-    case "dashboard":
+function route(route){
+    var path = route.split('/')
+    switch(path[0]){
+    case "#dashboard":
         console.log('dashboard')
         var html    = Handlebars.templates.dashboard({identities: IDENTITIES});
         document.getElementById("app").innerHTML = html
     break;
-    case "select":
+    case "#select":
         console.log('select')
         var html    = Handlebars.templates.select({identities: IDENTITIES});
         document.getElementById("app").innerHTML = html
     break;
-    case "selected":
-        console.log('selected '+id)
+    case "#selected":
+        console.log('selected '+route[1])
+        browser.runtime.sendMessage({type:"popup_selected", identity: IDENTITIES[path[1]]})
     break;
-    case "search":
+    case "#search":
     break;
-    case "details":
-        var html    = Handlebars.templates.dashboard({identity: IDENTITIES[id]});
+    case "#details":
+        var html    = Handlebars.templates.dashboard({identity: IDENTITIES[path[1]]});
         document.getElementById("app").innerHTML = html
     break;
-    default: //#select or #add={idp...}
-        addon.port.emit("hash", location.hash)
     }
-
-    return false;
 }
 
-//route('dashboard',0)
+//****************************************************************
+//                      ROUTING
+//****************************************************************
+window.onhashchange = function(){
+    route(window.location.hash)
+}
+
+window.onbeforeunload = function() {
+  browser.runtime.sendMessage({type:'popup_close'});
+}
+
+browser.runtime.sendMessage({type:"popup_ready"})
+.then(res => {
+    IDENTITIES = res.identities
+    //reload
+    route(window.location.hash)
+})

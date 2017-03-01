@@ -7,7 +7,7 @@
 
 {{#each identities}}
 <div class="row">
-  <a onclick="route('selected', {{this.id}})">
+  <a href='/index.html#selected/{{this.id}}'>
     <div class="col-offset-1 col-xs-3 col-md-2 text-right">
       <img src="{{this.picture}}" width="64" height="64">
       <!--<div class="circle-avatar" style="'background-image:url('+{{this.picture}}+')'"></div>-->
@@ -24,12 +24,8 @@
 <hr/>
 
 <div class="row">
-  <a class="col-xs-offset-1 col-xs-10" onclick="route('search', 0)">
+  <a class="col-xs-offset-1 col-xs-10" href="/index.html#search">
     <!--<img class="img-responsive" src="assets/plusIcon.jpg"/>-->
     <span>Add an identity</span>
-  </a>
-  <a class="col-xs-offset-1 col-xs-10" onclick="route('select', 0)">
-    <!--<img class="img-responsive" src="assets/plusIcon.jpg"/>-->
-    <span>Select</span>
   </a>
 </div>

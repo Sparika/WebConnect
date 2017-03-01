@@ -53,6 +53,7 @@ var wid_button = require("sdk/ui/button/toggle").ToggleButton({
   icon: {
     "16": "./icon16.png",
     "32": "./icon32.png",
+
     "64": "./icon64.png"
   },
   onClick: clk_idSelector

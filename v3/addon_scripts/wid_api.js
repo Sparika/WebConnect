@@ -24,8 +24,16 @@ window.addEventListener("message", function(message){
   var request = message.data.request
   request.origin = message.origin
   switch (message.data.type) {
-    case 'wid_request': wid_connect(message.data); break;
-    case 'wid_register': wid_register(message.data); break;
+    case 'wid_request':
+        wid_connect(message.data)
+        .then(response => {
+            message.source.postMessage(response, message.origin);
+        })
+    break;
+    case 'wid_register':
+        browser.runtime.sendMessage({type:"wid_register",request:request})
+        // API is not waiting for a response
+    break;
     default: console.log('Unknown message: '+event.data)
   }
 })
@@ -36,18 +44,22 @@ window.addEventListener("message", function(message){
 *   This function request a new ID Assertion from the extension to authenticate the user.
 **/
 function wid_connect (request){
-    browser.runtime.sendMessage({type:"wid_request",request:request})
+    return browser.runtime.sendMessage({type:"wid_request",request:request})
     .then(response => {
-        console.log('Response: '+response)
         if(response.error){
             return {type:"wid_error", 'response':response.error}
         } else {
-            return {type:"wid_response", 'response':JSON.parse(atob(response.token)).assertion}
+            return {type:"wid_response", 'response':JSON.parse(atob(response)).assertion}
         }
         // else wid_register
         // else wid_guid
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+        console.log(error)
+        console.error(JSON.parse(error))
+
+    })
+
 //    return new Promise((resolve, reject) => {
 //        let tryCount = 0
 //        function rcvResponse(event){
@@ -75,18 +87,6 @@ function wid_connect (request){
 //		    window.addEventListener("message", rcvResponse, false);
 //	      window.postMessage({type:"wid_request",request:request}, "*");
 //    })
-}
-
-/**
-*   wid_register
-*   String domain: the IdP domain name.
-*   String type: the IdP proxy type.
-*   This function register an IdP Proxy in the WID Connect extension.
-*   Following standard WebRTC, the proxy is available at https://domain/.well-known/idp-proxy/type
-**/
-function wid_register (iss, sub, type, name){
-    var request = {type:"wid_register",request:{iss:iss, sub:sub, proxy:{type:type}, name:name}};
-    browser.runtime.sendMessage({type:"wid_register",request:request})
 }
 
 /**

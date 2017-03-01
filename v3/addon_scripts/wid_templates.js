@@ -3,9 +3,9 @@
 templates['dashboard'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div class=\"row\">\n  <a onclick=\"route('details', "
+  return "<div class=\"row\">\n  <a  href=\"/index.html#details/"
     + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
-    + ")\">\n    <div class=\"col-offset-1 col-xs-3 col-md-2 text-right\">\n      <img src=\""
+    + "\">\n    <div class=\"col-offset-1 col-xs-3 col-md-2 text-right\">\n      <img src=\""
     + alias2(alias1((depth0 != null ? depth0.picture : depth0), depth0))
     + "\" width=\"64\" height=\"64\">\n      <!--<div class=\"circle-avatar\" style=\"'background-image:url('+"
     + alias2(alias1((depth0 != null ? depth0.picture : depth0), depth0))
@@ -19,7 +19,7 @@ templates['dashboard'] = template({"1":function(container,depth0,helpers,partial
 
   return "<div class=\"row\">\n  <div class=\"col-xs-offset-1 col-xs-10\">\n    <p>Configure your identities.</p>\n  </div>\n</div>\n<hr/>\n\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.identities : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "<hr/>\n\n<div class=\"row\">\n  <a class=\"col-xs-offset-1 col-xs-10\" onclick=\"route('search', 0)\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Add an identity</span>\n  </a>\n  <a class=\"col-xs-offset-1 col-xs-10\" onclick=\"route('select', 0)\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Select</span>\n  </a>\n</div>\n";
+    + "<hr/>\n\n<div class=\"row\">\n  <a class=\"col-xs-offset-1 col-xs-10\" href=\"/index.html#search\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Add an identity</span>\n  </a>\n  <a class=\"col-xs-offset-1 col-xs-10\" href=\"/index.html#select\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Select</span>\n  </a>\n</div>\n";
 },"useData":true});
 templates['details'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
@@ -50,9 +50,9 @@ templates['search'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
 templates['select'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div class=\"row\">\n  <a onclick=\"route('selected', "
+  return "<div class=\"row\">\n  <a href='/index.html#selected/"
     + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
-    + ")\">\n    <div class=\"col-offset-1 col-xs-3 col-md-2 text-right\">\n      <img src=\""
+    + "'>\n    <div class=\"col-offset-1 col-xs-3 col-md-2 text-right\">\n      <img src=\""
     + alias2(alias1((depth0 != null ? depth0.picture : depth0), depth0))
     + "\" width=\"64\" height=\"64\">\n      <!--<div class=\"circle-avatar\" style=\"'background-image:url('+"
     + alias2(alias1((depth0 != null ? depth0.picture : depth0), depth0))
@@ -66,6 +66,6 @@ templates['select'] = template({"1":function(container,depth0,helpers,partials,d
 
   return "<div class=\"row\">\n  <div class=\"col-xs-offset-1 col-xs-10\">\n    <p>Select an identity.</p>\n  </div>\n</div>\n<hr/>\n\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.identities : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "<hr/>\n\n<div class=\"row\">\n  <a class=\"col-xs-offset-1 col-xs-10\" onclick=\"route('search', 0)\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Add an identity</span>\n  </a>\n  <a class=\"col-xs-offset-1 col-xs-10\" onclick=\"route('select', 0)\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Select</span>\n  </a>\n</div>\n";
+    + "<hr/>\n\n<div class=\"row\">\n  <a class=\"col-xs-offset-1 col-xs-10\" href=\"/index.html#search\">\n    <!--<img class=\"img-responsive\" src=\"assets/plusIcon.jpg\"/>-->\n    <span>Add an identity</span>\n  </a>\n</div>\n";
 },"useData":true});
 })();
