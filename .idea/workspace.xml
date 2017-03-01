@@ -2,116 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="568b856c-694a-43aa-a5d3-91eef18012eb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v3/background.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v3/sandbox/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v3/sandbox/wid_sandbox.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/app/models/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/app/routes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/auth.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/database.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/passport.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/public/javascripts/wid_api.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/server.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/views/connect-local.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/views/index.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/views/login.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/views/profile.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/views/signup.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/Dockerfile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/IdPProxy_test.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/LICENSE.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/dev-IdPServer.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/docker-compose.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/openid-connect-server.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/frame_attack.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/jquery-2.0.0.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/lib/adapter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/mt-proxy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/rethink-oidc.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/rethink-proxy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/webrtc.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/webrtc_attack.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/javascripts/wid_api.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/stylesheets/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/public/stylesheets/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/admin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/auth.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/client.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/profile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/proxy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/routes/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/testCryptoKen.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/testCryptoKen.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/client/all.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/client/register.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/error.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/index.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/layout.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/login.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/newuser.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/partials/navbar.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/profile.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/idp/views/userlist.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/app/styles/app.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/app/styles/dashboard.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/app/styles/identity-detail.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/app/styles/search.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/assets/icon64.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/assets/plusIcon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-app/src/assets/profilePic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/lib/auth_header.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/lib/extract_jwt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/lib/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/lib/strategy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/lib/verify_jwt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/auth_header-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/extrators-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/mock_request.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/strategy-init-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/strategy-requests-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/strategy-validation-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/strategy-verify-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/passport-jwt/test/testdata.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/LICENSE.md" afterPath="$PROJECT_DIR$/ext/LICENSE.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/README.md" afterPath="$PROJECT_DIR$/ext/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/icon16.png" afterPath="$PROJECT_DIR$/ext/data/icon16.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/icon32.png" afterPath="$PROJECT_DIR$/ext/data/icon32.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/icon64.png" afterPath="$PROJECT_DIR$/ext/data/icon64.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/plusIcon.jpg" afterPath="$PROJECT_DIR$/ext/data/plusIcon.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/profilePic.png" afterPath="$PROJECT_DIR$/ext/data/profilePic.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/scripts/wid_listener.js" afterPath="$PROJECT_DIR$/ext/data/scripts/wid_listener.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/scripts/wid_ui.js" afterPath="$PROJECT_DIR$/ext/data/scripts/wid_ui.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/wid_listener.js" afterPath="$PROJECT_DIR$/ext/data/wid_listener.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/wid_ui/wid_selector.html" afterPath="$PROJECT_DIR$/ext/data/wid_ui/wid_selector.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/data/wid_ui/wid_selector.js" afterPath="$PROJECT_DIR$/ext/data/wid_ui/wid_selector.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/index.js" afterPath="$PROJECT_DIR$/ext/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/package.json" afterPath="$PROJECT_DIR$/ext/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v2/test/test-index.js" afterPath="$PROJECT_DIR$/ext/test/test-index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/wid_api.js" afterPath="$PROJECT_DIR$/api/wid_api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/addon_scripts/wid_api.js" afterPath="$PROJECT_DIR$/v3/addon_scripts/wid_api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/addon_scripts/wid_background.js" afterPath="$PROJECT_DIR$/v3/addon_scripts/wid_background.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/addon_scripts/wid_popup.js" afterPath="$PROJECT_DIR$/v3/addon_scripts/wid_popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/addon_scripts/wid_templates.js" afterPath="$PROJECT_DIR$/v3/addon_scripts/wid_templates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/index.html" afterPath="$PROJECT_DIR$/v3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/manifest.json" afterPath="$PROJECT_DIR$/v3/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/templates/dashboard.handlebars" afterPath="$PROJECT_DIR$/v3/templates/dashboard.handlebars" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v3/templates/select.handlebars" afterPath="$PROJECT_DIR$/v3/templates/select.handlebars" />
     </list>
     <ignored path="connect-addon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -164,18 +56,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LICENSE.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LICENSE.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -257,6 +139,7 @@
         <option value="$PROJECT_DIR$/v3/addon_scripts/wid_api.js" />
         <option value="$PROJECT_DIR$/v3/addon_scripts/wid_background.js" />
         <option value="$PROJECT_DIR$/api/wid_api.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -310,6 +193,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="v3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="connect-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="connect-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ext" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,7 +496,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="978" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -615,7 +512,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13525027" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13525027" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1013,14 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1037,10 +926,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/LICENSE.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>

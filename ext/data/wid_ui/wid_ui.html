@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="wid_selector.js"></script>
+</head>
+<body class="container">
+<div  class="col-10 col-offset-1">
+    <div class="row">
+        <div class="col-xs-4">
+            <img src="../icon64.png" class="img-responsive"/>
+        </div>
+        <div class="col-10 alignme">
+            <h2>CONNECT</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <p class="headerDetails" id="headerDetails"></p>
+    </div>
+    <hr>
+
+    <div id="identities">
+        <div class="row">
+            <a href="#identity">
+                <div class="col-xs-4 col-md-2">
+                    <div class="circle-avatar" style="background-image:url(http://i.stack.imgur.com/wuYN2.jpg)"></div>
+                </div>
+                <div class="col-xs-8 col-md-10 alignme">
+                    <span class="bold">Name</span><br>
+                    <span class="small text-light">From Identity Provider</span>
+                </div>
+            </a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <a href="#add">
+            <!--<img class="img-responsive" src="../plusIcon.jpg" style="width:100%"/>-->
+            <span>Add an identity</span>
+        </a>
+    </div>
+</div>
+    <div id="newDiv">
+        <div class="headerArea">
+            <p class="headerTitle">New Identity</p>
+            <p class="headerDetails">Search for a compatible Identity Provider and register a new Identity.</p>
+        </div>
+        <hr>
+        <form name="search" onsubmit="return searchIdpProxy(this);">
+            <input type="text" name="idp" value="localhost"><br>
+            <input type="submit" value="Search"/>
+        </form>
+        <div id="resultArea"></div>
+
+
+    </div>
+</body>
+</html>
