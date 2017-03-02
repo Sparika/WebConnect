@@ -61,23 +61,52 @@ function _getIdentityAssertion(response){
     // TODO use hint
     pc.setIdentityProvider(identity.iss, identity.proxy)
     return pc.getIdentityAssertion()
+    .catch(error => {
+        error = JSON.parse(error.message)
+        if(error.name == 'IdpLoginError' && error.loginUrl){
+            return _login(error.loginUrl)
+            // Single retry
+            .then(pc.getIdentityAssertion)
+        } else {
+            throw error
+        }
+    })
 }
 
-function _wid_login(loginUrl){
-    var login_popup = window.open(loginUrl, "LoginWindow", 'toolbar=0,status=0,width=626,height=436')
+var deffered = {resolve:null,
+                reject:null,
+                resolved:true},
+    loginPage;
+function _login(loginUrl){
+    if(!deffered.resolved){
+        deffered.resolved = true
+        deffered.reject('NEWLOGINREQUESTED')
+    }
+    return new Promise(function(resolve, reject){
+        loginPage = window.open(loginUrl, 'loginPage')
+        deffered.resolve = resolve
+        deffered.reject = reject
+        deffered.resolved = false
+        var timer = setInterval(function() {
+            if(loginPage.closed) {
+                clearInterval(timer);
+                deffered.resolved = true
+                reject('LOGINABORTED')
+            }
+        }, 1000);
+    })
+    //loginPage.close()
 }
+function loginDoneListener(message){
+    if(message.data == "LOGINDONE"){
+        deffered.resolved = true
+        deffered.resolve()
+        loginPage.close()
+    }
+}
+
 //
 //                /************************************************************
 //                /       TODO DETECT DOMString "LOGINDONE" MESSAGE
 //                /***********************************************************/
-function _wid_promiseToLogin(loginUrl){
-    var login_popup = window.open(loginUrl, "LoginWindow", 'toolbar=0,status=0,width=626,height=436')
-    return new Promise(function(resolve, reject){
-        login_popup.onunload = function(){
-            if(login_popup.closed){
-                alert('closed')
-                resolve('close')
-            }
-        }
-    })
-}
+
