@@ -1,5 +1,8 @@
 'use strict';
-var storage = browser.storage;
+
+/******************************************************************************
+								LOCAL STORAGE
+******************************************************************************/
 //
 //const IDENTITIES = {
 //  0: {
@@ -9,25 +12,9 @@ var storage = browser.storage;
 //    picture: 'http://placehold.it/350x350',
 //    name: 'Mr. Bob',
 //    proxy: 'rethink-oidc'
-//  },
-//  1: {
-//    id: 1,
-//    iss: 'oidc.rethink.orange-labs.fr',
-//    sub: 'frank@dt.de',
-//    picture: 'http://placehold.it/250x250',
-//    name: 'Frank',
-//    proxy: 'rethink-oidc'
 //  }
 //};
-
-/******************************************************************************
-								LOCAL STORAGE
-******************************************************************************/
-// Init only if does not exists already
-if(!storage.identities){
-    storage.identities = {}
-    storage.guid = null
-}
+var extStorage = browser.storage.local;
 
 /************************************************************
 /                PAGE CALL TO API
@@ -38,9 +25,7 @@ function api_rcv(message, sender, sendResponse){
         return wid_request(message.request)
       break;
       case 'wid_register':
-        wid_register(message.request)
-        // TODO throw error already registered
-        sendResponse('OK')
+        return wid_register(message.request)
       break;
       default: console.log('Unknown API request')
     }
@@ -54,8 +39,14 @@ function wid_register(identity){
     //Register new identity
     var id = identity.sub+"@"+identity.iss
     identity.id = id
-    storage.identities[id] = identity
-    console.log(storage.identities)
+    return extStorage.get('identities')
+    .then(res => {
+        if(!res.identities){
+            res.identities = {}
+        }
+        res.identities[id] = identity
+        return extStorage.set(res)
+    })
 }
 function wid_registerGUID(request){
     //TODO Test if already set
@@ -89,7 +80,7 @@ function wid_request(request){
 function popup_rcv(message, sender, sendResponse){
     switch (message.type) {
         case 'popup_ready':
-            sendResponse({identities:storage.identities})
+            return extStorage.get('identities')
         break;
         case 'popup_selected':
             browser.windows.remove(idSelectionRequest.popupId)

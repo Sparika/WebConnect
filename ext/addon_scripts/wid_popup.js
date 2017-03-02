@@ -15,6 +15,7 @@ function route(route){
         browser.runtime.sendMessage({type:"popup_selected", identity: IDENTITIES[path[1]]})
     break;
     case "#search":
+        var html    = Handlebars.templates.search({})
     break;
     case "#details":
         var html    = Handlebars.templates.dashboard({identity: IDENTITIES[path[1]]});
