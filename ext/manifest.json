@@ -8,7 +8,7 @@
     "64": "/assets/icon64.png"
   },
   "background": {
-    "page": "/background.html"
+    "scripts": ["/addon_scripts/wid_background.js"]
   },
   "content_scripts": [
     {
@@ -18,10 +18,6 @@
       ]
     }
   ],
-  "sandbox": {
-    "pages": [ "/sandbox.html" ],
-    "content_security_policy":"sandbox allow-scripts; script-src 'self' https://energyq.idp.rethink.orange-labs.fr"
-  },
   "permissions": [
     "storage",
     "tabs"

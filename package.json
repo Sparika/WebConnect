@@ -1,0 +1,14 @@
+{
+  "name": "WebConnect",
+  "scripts": {
+    "run": "web-ext run",
+    "run:debug": "web-ext run --start-url https://energyq.idp.rethink.orange-labs.fr https://acor-webrtc.rethink2.orange-labs.fr --browser-console",
+    "build": "web-ext build --source-dir=ext --artifacts-dir=dist",
+    "build:handlebars": "handlebars ext/templates/ -f ext/addon_scripts/wid_templates.js",
+    "build:sign": "web-ext sign --source-dir=ext --artifacts-dir=dist --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.6",
+    "web-ext": "^1.8.1"
+  }
+}

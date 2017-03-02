@@ -25,70 +25,25 @@ window.addEventListener("message", function(message){
   request.origin = message.origin
   switch (message.data.type) {
     case 'wid_request':
-        wid_connect(message.data)
-        .then(response => {
+        browser.runtime.sendMessage({type:"wid_request",request:message.data})
+        .then(_getIdentityAssertion)
+        .then(assertion => {
+            var response = {type:"wid_response", 'response':JSON.parse(atob(assertion)).assertion}
             message.source.postMessage(response, message.origin);
+        })
+        .catch(error => {
+            console.error(error)
         })
     break;
     case 'wid_register':
+        console.log('REGISTER')
+        console.log(request)
         browser.runtime.sendMessage({type:"wid_register",request:request})
         // API is not waiting for a response
     break;
     default: console.log('Unknown message: '+event.data)
   }
 })
-
-/**
-*   wid_connect
-*   JSON request: parameters for the request in a JSON object.
-*   This function request a new ID Assertion from the extension to authenticate the user.
-**/
-function wid_connect (request){
-    return browser.runtime.sendMessage({type:"wid_request",request:request})
-    .then(response => {
-        console.log(response)
-        if(response.error){
-            return {type:"wid_error", 'response':response.error}
-        } else {
-            return {type:"wid_response", 'response':JSON.parse(atob(response)).assertion}
-        }
-        // else wid_register
-        // else wid_guid
-    })
-    .catch(error => {
-        console.log(error)
-        console.error(JSON.parse(error))
-
-    })
-
-//    return new Promise((resolve, reject) => {
-//        let tryCount = 0
-//        function rcvResponse(event){
-//            if(event.data.type == 'wid_response'){
-//                resolve(event.data.response)
-//            }
-//            else if(event.data.type == 'wid_error'){
-//                var error = event.data.response
-//                if(error.name == 'IdpLoginError' && tryCount<tryMax){
-//                    tryCount++
-//                    _wid_login(error.loginUrl)
-//                    //.then(event => {
-//                    //    window.postMessage({type:"wid_request",request:request}, "*")
-//                } else {
-//                    reject(error)
-//                }
-//            }
-//            else if(event.data.type == 'wid_tryAgain'){
-//                // Use to retry rather than get directly the assertion after login
-//                // i.e. not OIDC/OAuth2
-//                // TODO implement retry by advertising of the already chosen IdP.
-//                alert('try again')
-//            }
-//        }
-//		    window.addEventListener("message", rcvResponse, false);
-//	      window.postMessage({type:"wid_request",request:request}, "*");
-//    })
-}
 
 /**
 *   wid_registerGUID
@@ -100,10 +55,21 @@ function wid_registerGUID(guid){
     window.postMessage({type:"wid_guid", request:{guid:guid}}, "*")
 }
 
+function _getIdentityAssertion(response){
+    var identity = JSON.parse(response)
+    var pc = new RTCPeerConnection()
+    // TODO use hint
+    pc.setIdentityProvider(identity.iss, identity.proxy)
+    return pc.getIdentityAssertion()
+}
+
 function _wid_login(loginUrl){
     var login_popup = window.open(loginUrl, "LoginWindow", 'toolbar=0,status=0,width=626,height=436')
 }
-
+//
+//                /************************************************************
+//                /       TODO DETECT DOMString "LOGINDONE" MESSAGE
+//                /***********************************************************/
 function _wid_promiseToLogin(loginUrl){
     var login_popup = window.open(loginUrl, "LoginWindow", 'toolbar=0,status=0,width=626,height=436')
     return new Promise(function(resolve, reject){

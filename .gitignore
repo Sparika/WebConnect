@@ -3,5 +3,5 @@ node_modules
 *.pem
 *.log
 .idea
-*/dist
+dist
 .DS_Store

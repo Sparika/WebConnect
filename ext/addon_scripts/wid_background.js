@@ -67,13 +67,6 @@ var idSelectionRequest = {resolved: true,
                       reject:null,
                       popupId:null
                      }
-var assertionRequest = {resolved: true,
-                      resolve:null,
-                      reject:null,
-                      popupId:null,
-                      count: 0,
-                      countMax: 1
-                     }
 function wid_request(request){
     if(!idSelectionRequest.resolved){
         var popupId = idSelectionRequest.popupId
@@ -91,25 +84,6 @@ function wid_request(request){
             idSelectionRequest.resolved = false
       })
     })
-    // assertionRequest Promise
-    .then(identity => {
-        idSelectionRequest.resolved = true
-        browser.windows.remove(idSelectionRequest.popupId)
-        //browser.windows.create({'url': 'http://example.com', 'type': 'popup', 'width':300, 'height':500})
-        //For now we do it with WebRTC
-        //TODO do it with own IdPSandbox
-        return new Promise(function(resolve, reject){
-            assertionRequest.resolve = resolve
-            assertionRequest.reject = reject
-            assertionRequest.resolved = false
-            assertionRequest.count = 0
-            document.getElementById('sandbox').contentWindow.postMessage(identity, '*')
-        })
-    })
-    .then(assertion => {
-        assertionRequest.resolved = true;
-        return assertion
-    })
 }
 
 function popup_rcv(message, sender, sendResponse){
@@ -118,7 +92,8 @@ function popup_rcv(message, sender, sendResponse){
             sendResponse({identities:storage.identities})
         break;
         case 'popup_selected':
-            idSelectionRequest.resolve(message.identity)
+            browser.windows.remove(idSelectionRequest.popupId)
+            idSelectionRequest.resolve(JSON.stringify(message.identity))
         break;
         case 'popup_close':
             idSelectionRequest.reject('Popup closed')
@@ -127,39 +102,13 @@ function popup_rcv(message, sender, sendResponse){
     }
 }
 
-function sandbox_rcv(event){
-    switch (event.data.type) {
-        case 'sandbox_assertion':
-            assertionRequest.resolve(event.data.assertion)
-        break;
-        case 'sandbox_error':
-            var error = JSON.parse(event.data.error)
-            console.log(error)
-            if(assertionRequest.count < assertionRequest.countMax && error.name == "IdpLoginError"){
-                assertionRequest.count++
-                browser.windows.create({'url': error.loginUrl, 'type': 'popup'})
-
-                /************************************************************
-                /       TODO DETECT DOMString "LOGINDONE" MESSAGE
-                /***********************************************************/
-
-            }else{
-                assertionRequest.reject(event.data.error)
-            }
-        break;
-        default: console.log('Unknown Sandbox request')
-    }
-}
-
 function popup_closed(windowId){
     if(windowId == idSelectionRequest.popupId){
-        idSelectionRequest.resolve = true
+        idSelectionRequest.resolves = true
         idSelectionRequest.reject('popup closed')
     }
 }
 
-console.log('Add listeners')
 browser.windows.onRemoved.addListener(popup_closed)
 browser.runtime.onMessage.addListener(popup_rcv)
-window.addEventListener('message',sandbox_rcv)
 browser.runtime.onMessage.addListener(api_rcv)
