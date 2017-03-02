@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Connect",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "content_security_policy": "script-src 'self' ",
   "description": "Allows users to choose their Identity Providers.",
   "icons": {
