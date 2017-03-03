@@ -22,26 +22,28 @@ var tryMax = 1
 
 window.addEventListener("message", function(message){
   var request = message.data.request
-  request.origin = message.origin
-  switch (message.data.type) {
-    case 'wid_request':
-        browser.runtime.sendMessage({type:"wid_request",request:message.data})
-        .then(_getIdentityAssertion)
-        .then(assertion => {
-            var response = {type:"wid_response", 'response':JSON.parse(atob(assertion)).assertion}
-            message.source.postMessage(response, message.origin);
-        })
-        .catch(error => {
-            console.error(error)
-        })
-    break;
-    case 'wid_register':
-        console.log('REGISTER')
-        console.log(request)
-        browser.runtime.sendMessage({type:"wid_register",request:request})
-        // API is not waiting for a response
-    break;
-    default: console.log('Unknown message: '+event.data)
+  if(request){
+      request.origin = message.origin
+      switch (message.data.type) {
+        case 'wid_request':
+            browser.runtime.sendMessage({type:"wid_request",request:message.data})
+            .then(_getIdentityAssertion)
+            .then(assertion => {
+                var response = {type:"wid_response", 'response':JSON.parse(atob(assertion)).assertion}
+                message.source.postMessage(response, message.origin);
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        break;
+        case 'wid_register':
+            console.log('REGISTER')
+            console.log(request)
+            browser.runtime.sendMessage({type:"wid_register",request:request})
+            // API is not waiting for a response
+        break;
+        default: console.log('Unknown message: '+event.data)
+      }
   }
 })
 
@@ -56,6 +58,7 @@ function wid_registerGUID(guid){
 }
 
 function _getIdentityAssertion(response){
+    console.log("GET ID ASSERTION")
     var identity = JSON.parse(response)
     var pc = new RTCPeerConnection()
     // TODO use hint
@@ -66,7 +69,9 @@ function _getIdentityAssertion(response){
         if(error.name == 'IdpLoginError' && error.loginUrl){
             return _login(error.loginUrl)
             // Single retry
-            .then(pc.getIdentityAssertion)
+            .then(res => {
+                return pc.getIdentityAssertion()
+            })
         } else {
             throw error
         }
@@ -88,25 +93,30 @@ function _login(loginUrl){
         deffered.reject = reject
         deffered.resolved = false
         var timer = setInterval(function() {
-            if(loginPage.closed) {
+            try{
+                if(loginPage.closed) {
+                    clearInterval(timer);
+                    deffered.resolved = true
+                    reject('LOGINABORTED')
+                }
+            } catch(error){
+                // Resolved by page closed and LOGINDONE
                 clearInterval(timer);
-                deffered.resolved = true
-                reject('LOGINABORTED')
+                console.log(error)
             }
         }, 1000);
     })
     //loginPage.close()
 }
+                /************************************************************
+                /       TODO DETECT DOMString "LOGINDONE" MESSAGE
+                /***********************************************************/
 function loginDoneListener(message){
-    if(message.data == "LOGINDONE"){
+    if(message.data == "LOGINDONE" && deffered.resolved == false){
+        console.log('LOGINDONE Resolve')
         deffered.resolved = true
-        deffered.resolve()
+        deffered.resolve('LOGINDONE')
         loginPage.close()
     }
 }
-
-//
-//                /************************************************************
-//                /       TODO DETECT DOMString "LOGINDONE" MESSAGE
-//                /***********************************************************/
-
+window.addEventListener("message", loginDoneListener)
