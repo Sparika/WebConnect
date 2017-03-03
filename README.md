@@ -47,7 +47,9 @@ Then the generated Identity Assertion is returned to the web page requesting aut
 
 ### Links and examples
 https://github.com/reTHINK-project/dev-IdPServer - Compatible Identity Provider 
+
 https://github.com/Sparika/ACOR_SDP/ - Compatible client web site requiring authentication
+
 https://github.com/Sparika/passport-jwt - Modified JWT strategy, used by ACOR_SDP
 
 https://www.w3.org/TR/webrtc/#sec.identity-proxy - WebRTC Identity specification
